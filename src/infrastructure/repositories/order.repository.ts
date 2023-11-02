@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { OrderM } from '../../domain/model/order';
-import { OrderRepository } from '../../domain/repositories/orderRepository.interface';
+import { OrderRepository } from '../../domain/repositories/order-repository.interface';
 import { Order } from '../entities/order.entity';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class DatabaseOrderRepository implements OrderRepository {
     private readonly orderEntityRepository: Repository<Order>,
   ) {}
 
-  async updateContent(id: number, isDone: boolean): Promise<void> {
+  async updateInfo(id: number, isDone: boolean): Promise<void> {
     await this.orderEntityRepository.update(
       {
         id: id,
@@ -31,7 +31,10 @@ export class DatabaseOrderRepository implements OrderRepository {
     return ordersEntity.map((orderEntity) => this.toOrder(orderEntity));
   }
   async findById(id: number): Promise<OrderM> {
-    const orderEntity = await this.orderEntityRepository.findOneOrFail(id);
+    const orderEntity = await this.orderEntityRepository.findOneOrFail({
+      where: { id: id },
+    });
+
     return this.toOrder(orderEntity);
   }
   async deleteById(id: number): Promise<void> {

@@ -1,10 +1,10 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { addOrderUseCases } from '../../usecases/order/addOrder.usecases';
-import { deleteOrderUseCases } from '../../usecases/order/deleteOrder.usecases';
-import { GetOrderUseCases } from '../../usecases/order/getOrder.usecases';
-import { getOrdersUseCases } from '../../usecases/order/getOrders.usecases';
-import { updateOrderUseCases } from '../../usecases/order/updateOrder.usecases';
-import { IsAuthenticatedUseCases } from '../../usecases/auth/isAuthenticated.usecases';
+import { addOrderUseCases } from '../../usecases/order/add-order.usecases';
+import { deleteOrderUseCases } from '../../usecases/order/delete-order.usecases';
+import { GetOrderUseCases } from '../../usecases/order/get-order.usecases';
+import { getOrdersUseCases } from '../../usecases/order/get-orders.usecases';
+import { updateOrderUseCases } from '../../usecases/order/update-order.usecases';
+import { IsAuthenticatedUseCases } from '../../usecases/auth/is-authenticated.usecases';
 import { LoginUseCases } from '../../usecases/auth/login.usecases';
 import { LogoutUseCases } from '../../usecases/auth/logout.usecases';
 
@@ -37,9 +37,9 @@ import { UseCaseProxy } from './usecases-proxy';
 })
 export class UsecasesProxyModule {
   // Auth
-  static LOGIN_USECASES_PROXY = 'LoginUseCasesProxy';
-  static IS_AUTHENTICATED_USECASES_PROXY = 'IsAuthenticatedUseCasesProxy';
-  static LOGOUT_USECASES_PROXY = 'LogoutUseCasesProxy';
+  static LOGIN_USECASES_PROXY = 'loginUseCasesProxy';
+  static IS_AUTHENTICATED_USECASES_PROXY = 'isAuthenticatedUseCasesProxy';
+  static LOGOUT_USECASES_PROXY = 'logoutUseCasesProxy';
 
   static GET_ORDER_USECASES_PROXY = 'getOrderUsecasesProxy';
   static GET_ORDERS_USECASES_PROXY = 'getOrdersUsecasesProxy';

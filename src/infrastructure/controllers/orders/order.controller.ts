@@ -9,21 +9,20 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
 import { UseCaseProxy } from '../../usecases-proxy/usecases-proxy';
 import { UsecasesProxyModule } from '../../usecases-proxy/usecases-proxy.module';
-import { GetOrderUseCases } from '../../../usecases/order/getOrder.usecases';
+import { GetOrderUseCases } from '../../../usecases/order/get-order.usecases';
 import { OrderPresenter } from './order.presenter';
 import { ApiResponseType } from '../../common/swagger/response.decorator';
-import { getOrdersUseCases } from '../../../usecases/order/getOrders.usecases';
-import { updateOrderUseCases } from '../../../usecases/order/updateOrder.usecases';
+import { getOrdersUseCases } from '../../../usecases/order/get-orders.usecases';
+import { updateOrderUseCases } from '../../../usecases/order/update-order.usecases';
 import { AddOrderDto, UpdateOrderDto } from './order.dto';
-import { deleteOrderUseCases } from '../../../usecases/order/deleteOrder.usecases';
-import { addOrderUseCases } from '../../../usecases/order/addOrder.usecases';
+import { deleteOrderUseCases } from '../../../usecases/order/delete-order.usecases';
+import { addOrderUseCases } from '../../../usecases/order/add-order.usecases';
 
 @Controller('order')
 @ApiTags('order')
-@ApiResponse({ status: 500, description: 'Internal error' })
 @ApiExtraModels(OrderPresenter)
 export class OrderController {
   constructor(
@@ -71,10 +70,10 @@ export class OrderController {
   @Post('order')
   @ApiResponseType(OrderPresenter, true)
   async addOrder(@Body() addOrderDto: AddOrderDto) {
-    const { info: content } = addOrderDto;
+    const { info: info } = addOrderDto;
     const orderCreated = await this.addOrderUsecaseProxy
       .getInstance()
-      .execute(content);
+      .execute(info);
     return new OrderPresenter(orderCreated);
   }
 }
