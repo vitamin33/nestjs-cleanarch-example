@@ -20,8 +20,8 @@ import {
 import { AuthLoginDto } from './auth-dto.class';
 import { IsAuthPresenter } from './auth.presenter';
 
-import JwtRefreshGuard from '../../common/guards/jwtRefresh.guard';
-import { JwtAuthGuard } from '../../common/guards/jwtAuth.guard';
+import JwtRefreshGuard from '../../common/guards/jwt-refresh.guard';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { LoginGuard } from '../../common/guards/login.guard';
 
 import { UseCaseProxy } from '../../usecases-proxy/usecases-proxy';
