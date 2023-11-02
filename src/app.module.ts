@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { LoggerModule } from './infrastructure/logger/logger.module';
 import { ExceptionsModule } from './infrastructure/exceptions/exceptions.module';
+import { EnvironmentConfigModule } from './infrastructure/config/environment-config/environment-config.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ExceptionsModule } from './infrastructure/exceptions/exceptions.module'
     }),
     LoggerModule,
     ExceptionsModule,
+    EnvironmentConfigModule,
   ],
   controllers: [],
   providers: [],
