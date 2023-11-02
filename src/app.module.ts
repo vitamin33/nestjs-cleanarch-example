@@ -4,6 +4,13 @@ import { PassportModule } from '@nestjs/passport';
 import { LoggerModule } from './infrastructure/logger/logger.module';
 import { ExceptionsModule } from './infrastructure/exceptions/exceptions.module';
 import { EnvironmentConfigModule } from './infrastructure/config/environment-config/environment-config.module';
+import { UsecasesProxyModule } from './infrastructure/usecases-proxy/usecases-proxy.module';
+import { ControllersModule } from './infrastructure/controllers/controllers.module';
+import { BcryptModule } from './infrastructure/services/bcrypt/bcrypt.module';
+import { JwtModule as JwtServiceModule } from './infrastructure/services/jwt/jwt.module';
+import { LocalStrategy } from './infrastructure/common/strategies/local.strategy';
+import { JwtStrategy } from './infrastructure/common/strategies/jwt.strategy';
+import { JwtRefreshTokenStrategy } from './infrastructure/common/strategies/jwt-refresh.strategy';
 
 @Module({
   imports: [
@@ -13,9 +20,12 @@ import { EnvironmentConfigModule } from './infrastructure/config/environment-con
     }),
     LoggerModule,
     ExceptionsModule,
+    UsecasesProxyModule.register(),
+    ControllersModule,
+    BcryptModule,
+    JwtServiceModule,
     EnvironmentConfigModule,
   ],
-  controllers: [],
-  providers: [],
+  providers: [LocalStrategy, JwtStrategy, JwtRefreshTokenStrategy],
 })
 export class AppModule {}
